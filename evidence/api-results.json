@@ -1,0 +1,133 @@
+[
+  {
+    "label": "Початковий каталог",
+    "method": "GET",
+    "route": "/clothes",
+    "status": 200,
+    "requestId": "443c534a-dfd0-459e-b6f5-1342bfe1358f",
+    "traceMatch": "true",
+    "body": [
+      {
+        "id": "clothing-1",
+        "title": "Куртка зимова",
+        "slug": "kurtka-zymova",
+        "category": "Одяг",
+        "price": 2500
+      },
+      {
+        "id": "clothing-2",
+        "title": "Кросівки Sport",
+        "slug": "krosivky-sport",
+        "category": "Взуття",
+        "price": 1800
+      }
+    ]
+  },
+  {
+    "label": "Створення товару",
+    "method": "POST",
+    "route": "/clothes",
+    "status": 201,
+    "requestId": "a8e5b246-6f23-47cf-931b-22b0179e596f",
+    "traceMatch": "true",
+    "body": {
+      "id": "clothing-3",
+      "title": "Черевики Trail 2",
+      "slug": "cherevyky-trail-2",
+      "category": "Взуття",
+      "price": 1499.5
+    }
+  },
+  {
+    "label": "Оформлення замовлення",
+    "method": "POST",
+    "route": "/orders",
+    "status": 201,
+    "requestId": "05a00945-88a9-4891-aac2-16c972c128d3",
+    "traceMatch": "true",
+    "body": {
+      "orderId": "ord-52712386-76ef-4b59-99d0-cc9c31289886",
+      "customerEmail": "student@example.com",
+      "productId": "clothing-3",
+      "productTitle": "Черевики Trail 2",
+      "productSlug": "cherevyky-trail-2",
+      "unitPrice": 1499.5,
+      "quantity": 2,
+      "subtotal": 2999,
+      "taxAmount": 599.8,
+      "total": 3598.8,
+      "currency": "UAH",
+      "status": "confirmed",
+      "createdAt": "2026-10-22T14:02:55.722Z"
+    }
+  },
+  {
+    "label": "Невідомий товар",
+    "method": "POST",
+    "route": "/orders",
+    "status": 404,
+    "requestId": "b47e9981-b6f7-4b4e-8666-09aa138026ef",
+    "traceMatch": "true",
+    "body": {
+      "message": "Товар missing не знайдено",
+      "error": "Not Found",
+      "statusCode": 404
+    }
+  },
+  {
+    "label": "Список замовлень",
+    "method": "GET",
+    "route": "/orders",
+    "status": 200,
+    "requestId": "8930bbd4-7323-4161-be66-3af2d6bfce9f",
+    "traceMatch": "true",
+    "body": [
+      {
+        "orderId": "ord-52712386-76ef-4b59-99d0-cc9c31289886",
+        "customerEmail": "student@example.com",
+        "productId": "clothing-3",
+        "productTitle": "Черевики Trail 2",
+        "productSlug": "cherevyky-trail-2",
+        "unitPrice": 1499.5,
+        "quantity": 2,
+        "subtotal": 2999,
+        "taxAmount": 599.8,
+        "total": 3598.8,
+        "currency": "UAH",
+        "status": "confirmed",
+        "createdAt": "2026-10-22T14:02:55.722Z"
+      }
+    ]
+  },
+  {
+    "label": "Каталог після запитів",
+    "method": "GET",
+    "route": "/clothes",
+    "status": 200,
+    "requestId": "68e730b4-86f9-4d90-bf52-2c246957f0ee",
+    "traceMatch": "true",
+    "body": [
+      {
+        "id": "clothing-1",
+        "title": "Куртка зимова",
+        "slug": "kurtka-zymova",
+        "category": "Одяг",
+        "price": 2500
+      },
+      {
+        "id": "clothing-2",
+        "title": "Кросівки Sport",
+        "slug": "krosivky-sport",
+        "category": "Взуття",
+        "price": 1800
+      },
+      {
+        "id": "clothing-3",
+        "title": "Черевики Trail 2",
+        "slug": "cherevyky-trail-2",
+        "category": "Взуття",
+        "price": 1499.5
+      }
+    ]
+  }
+]

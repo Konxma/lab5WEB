@@ -1,0 +1,17 @@
+[LOG] [NestFactory] Starting Nest application...
+[LOG] [InstanceLoader] AppModule dependencies initialized
+[LOG] [InstanceLoader] SharedModule dependencies initialized
+[LOG] [InstanceLoader] ClothesModule dependencies initialized
+[LOG] [InstanceLoader] OrdersModule dependencies initialized
+[LOG] [RoutesResolver] ClothesController {/clothes}:
+[LOG] [RouterExplorer] Mapped {/clothes, POST} route
+[LOG] [RouterExplorer] Mapped {/clothes, GET} route
+[LOG] [RouterExplorer] Mapped {/clothes/:id, GET} route
+[LOG] [RouterExplorer] Mapped {/clothes/:id, PATCH} route
+[LOG] [RouterExplorer] Mapped {/clothes/:id, DELETE} route
+[LOG] [RoutesResolver] OrdersController {/orders}:
+[LOG] [RouterExplorer] Mapped {/orders, POST} route
+[LOG] [RouterExplorer] Mapped {/orders, GET} route
+[LOG] [ClothesService] Ініціалізація модуля завершена. Завантажено початкові тестові дані.
+[LOG] [OrdersService] Сервіс замовлень готовий до прийому замовлень.
+[LOG] [NestApplication] Nest application successfully started

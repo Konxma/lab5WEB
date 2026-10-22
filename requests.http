@@ -1,0 +1,50 @@
+@baseUrl = http://localhost:3000
+
+### 1. Початкові товари з OnModuleInit. X-Request-Id змінюється на кожен запит.
+GET {{baseUrl}}/clothes
+
+### 2. Новий товар і автоматична генерація slug.
+POST {{baseUrl}}/clothes
+Content-Type: application/json
+
+{
+  "title": "Черевики Trail 2",
+  "category": "Взуття",
+  "price": 1499.50
+}
+
+### 3. Пошук і обмеження видачі.
+GET {{baseUrl}}/clothes?search=Trail&limit=1
+
+### 4. Замовлення на створений товар (після чистого запуску його id = clothing-3).
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "productId": "clothing-3",
+  "quantity": 2,
+  "customerEmail": "student@example.com"
+}
+
+### 5. Відсутній товар: очікується 404.
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "productId": "missing",
+  "quantity": 1,
+  "customerEmail": "student@example.com"
+}
+
+### 6. Усі оформлені замовлення.
+GET {{baseUrl}}/orders
+
+### 7. Некоректна кількість: очікується 400.
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "productId": "clothing-1",
+  "quantity": 0,
+  "customerEmail": "student@example.com"
+}

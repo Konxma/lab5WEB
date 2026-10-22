@@ -1,0 +1,20 @@
+npm notice run lab5-web-nestjs@1.0.0 test
+npm notice run npm run build && node --test test/*.test.js
+npm notice run lab5-web-nestjs@1.0.0 build
+npm notice run tsc -p tsconfig.build.json
+TAP version 13
+# Subtest: повний сценарій каталогу, замовлень і request scope
+ok 1 - повний сценарій каталогу, замовлень і request scope
+  ---
+  duration_ms: 471.7987
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1902.623
