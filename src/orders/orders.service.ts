@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { ClothesService } from '../clothes/clothes.service';
+import { GadgetsService } from '../gadgets/gadgets.service';
 import { STORE_CONFIG, StoreConfig } from '../shared/config/app-config.provider';
 import { FEE_CALCULATOR, FeeCalculator } from '../shared/config/fee-calculator.provider';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -12,7 +12,7 @@ export class OrdersService implements OnModuleInit {
   private readonly orders: OrderEntity[] = [];
 
   constructor(
-    private readonly clothesService: ClothesService,
+    private readonly gadgetsService: GadgetsService,
     @Inject(STORE_CONFIG) private readonly config: StoreConfig,
     @Inject(FEE_CALCULATOR) private readonly feeCalculator: FeeCalculator,
   ) {}
@@ -22,7 +22,7 @@ export class OrdersService implements OnModuleInit {
   }
 
   createOrder(dto: CreateOrderDto): OrderEntity {
-    const product = this.clothesService.findOne(dto.productId);
+    const product = this.gadgetsService.findOne(dto.productId);
     const subtotal = Math.round(product.price * dto.quantity * 100) / 100;
     const taxAmount = this.feeCalculator.calculateTax(subtotal);
     const order: OrderEntity = {

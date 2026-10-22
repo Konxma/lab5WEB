@@ -53,15 +53,16 @@ async function main() {
   }
 
   try {
-    await capture('01-catalog.png', 'Початковий каталог: OnModuleInit', 'GET', '/clothes');
-    const product = await capture('02-product.png', 'Створення товару та slug', 'POST', '/clothes', {
-      title: 'Черевики Trail 2', category: 'Взуття', price: 1499.5,
+    await capture('01-catalog.png', 'Початковий каталог: OnModuleInit', 'GET', '/gadgets');
+    const product = await capture('02-product.png', 'Створення гаджета та slug', 'POST', '/gadgets', {
+      title: 'Новий Смартфон', price: 30000, warrantyMonths: 12,
+      cpu: 'Snapdragon 8 Gen 3', ramGb: 12,
     });
     await capture('03-order.png', 'Замовлення: ціна, податок, підсумок', 'POST', '/orders', {
       productId: product.id, quantity: 2, customerEmail: 'student@example.com',
     });
     await capture('04-not-found.png', 'Перевірка помилки 404', 'POST', '/orders', {
-      productId: 'missing', quantity: 1, customerEmail: 'student@example.com',
+      productId: '99999', quantity: 1, customerEmail: 'student@example.com',
     });
     await capture('05-orders.png', 'Список оформлених замовлень', 'GET', '/orders');
     console.log('Збережено 5 знімків реальних HTTP-відповідей.');

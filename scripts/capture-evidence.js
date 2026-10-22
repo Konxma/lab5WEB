@@ -37,6 +37,7 @@ async function main() {
       label, method, route, status: response.status,
       requestId: response.headers.get('x-request-id'),
       traceMatch: response.headers.get('x-request-trace-match'),
+      requestBody: data === undefined ? null : data,
       body,
     };
     exchanges.push(record);
@@ -44,18 +45,19 @@ async function main() {
   }
 
   try {
-    await send('Початковий каталог', 'GET', '/clothes');
-    const created = await send('Створення товару', 'POST', '/clothes', {
-      title: 'Черевики Trail 2', category: 'Взуття', price: 1499.5,
+    await send('Початковий каталог', 'GET', '/gadgets');
+    const created = await send('Створення гаджета', 'POST', '/gadgets', {
+      title: 'Новий Смартфон', price: 30000, warrantyMonths: 12,
+      cpu: 'Snapdragon 8 Gen 3', ramGb: 12,
     });
     await send('Оформлення замовлення', 'POST', '/orders', {
       productId: created.body.id, quantity: 2, customerEmail: 'student@example.com',
     });
     await send('Невідомий товар', 'POST', '/orders', {
-      productId: 'missing', quantity: 1, customerEmail: 'student@example.com',
+      productId: '99999', quantity: 1, customerEmail: 'student@example.com',
     });
     await send('Список замовлень', 'GET', '/orders');
-    await send('Каталог після запитів', 'GET', '/clothes');
+    await send('Каталог після запитів', 'GET', '/gadgets');
     fs.writeFileSync(path.join(evidenceDir, 'api-results.json'), JSON.stringify(exchanges, null, 2) + '\n');
     fs.writeFileSync(path.join(evidenceDir, 'startup.log'), logLines.join('\n') + '\n');
     console.log(`Збережено ${exchanges.length} HTTP-обмінів і ${logLines.length} повідомлень запуску.`);

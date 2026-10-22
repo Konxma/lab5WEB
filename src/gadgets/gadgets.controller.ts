@@ -1,16 +1,16 @@
-import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Query, Res } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Header, HttpCode, Param, Patch, Post, Query, Res } from '@nestjs/common';
 import type { Response } from 'express';
 import { RequestIdService } from '../shared/request-id.service';
 import { RequestTraceService } from '../shared/request-trace.service';
-import { ClothesService } from './clothes.service';
-import { ClothingEntity } from './clothing.entity';
-import { CreateClothingDto } from './dto/create-clothing.dto';
-import { UpdateClothingDto } from './dto/update-clothing.dto';
+import { GadgetsService } from './gadgets.service';
+import { GadgetEntity } from './gadget.entity';
+import { CreateGadgetDto } from './dto/create-gadget.dto';
+import { UpdateGadgetDto } from './dto/update-gadget.dto';
 
-@Controller('clothes')
-export class ClothesController {
+@Controller('gadgets')
+export class GadgetsController {
   constructor(
-    private readonly clothesService: ClothesService,
+    private readonly gadgetsService: GadgetsService,
     private readonly requestId: RequestIdService,
     private readonly requestTrace: RequestTraceService,
   ) {}
@@ -20,46 +20,48 @@ export class ClothesController {
     response.setHeader('X-Request-Trace-Match', String(this.requestId.id === this.requestTrace.getId()));
   }
 
-  @Post()
-  create(@Body() dto: CreateClothingDto, @Res({ passthrough: true }) response: Response): ClothingEntity {
-    this.trace(response);
-    return this.clothesService.create(dto);
-  }
-
   @Get()
+  @Header('X-API-Version', '1.0')
+  @Header('X-Service-Status', 'operational')
   findAll(
     @Query('search') search: string | undefined,
     @Query('limit') rawLimit: string | undefined,
     @Res({ passthrough: true }) response: Response,
-  ): ClothingEntity[] {
+  ): GadgetEntity[] {
     this.trace(response);
     const limit = rawLimit === undefined ? undefined : Number(rawLimit);
     if (limit !== undefined && (!Number.isInteger(limit) || limit < 1)) {
       throw new BadRequestException('limit має бути додатним цілим числом');
     }
-    return this.clothesService.findAll(search, limit);
+    return this.gadgetsService.findAll(search, limit);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string, @Res({ passthrough: true }) response: Response): ClothingEntity {
+  findOne(@Param('id') id: string, @Res({ passthrough: true }) response: Response): GadgetEntity {
     this.trace(response);
-    return this.clothesService.findOne(id);
+    return this.gadgetsService.findOne(id);
+  }
+
+  @Post()
+  create(@Body() dto: CreateGadgetDto, @Res({ passthrough: true }) response: Response): GadgetEntity {
+    this.trace(response);
+    return this.gadgetsService.create(dto);
   }
 
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() dto: UpdateClothingDto,
+    @Body() dto: UpdateGadgetDto,
     @Res({ passthrough: true }) response: Response,
-  ): ClothingEntity {
+  ): GadgetEntity {
     this.trace(response);
-    return this.clothesService.update(id, dto);
+    return this.gadgetsService.update(id, dto);
   }
 
   @Delete(':id')
   @HttpCode(204)
   remove(@Param('id') id: string, @Res({ passthrough: true }) response: Response): void {
     this.trace(response);
-    this.clothesService.remove(id);
+    this.gadgetsService.remove(id);
   }
 }

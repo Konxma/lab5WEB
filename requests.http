@@ -1,50 +1,60 @@
 @baseUrl = http://localhost:3000
 
-### 1. Початкові товари з OnModuleInit. X-Request-Id змінюється на кожен запит.
-GET {{baseUrl}}/clothes
+### Початкові гаджети після OnModuleInit
+GET {{baseUrl}}/gadgets
 
-### 2. Новий товар і автоматична генерація slug.
-POST {{baseUrl}}/clothes
+### Пошук і обмеження видачі з практичної №4
+GET {{baseUrl}}/gadgets?search=Pro&limit=1
+
+### Отримати гаджет за ID
+GET {{baseUrl}}/gadgets/1
+
+### Неіснуючий ID: 404
+GET {{baseUrl}}/gadgets/99999
+
+### Створити гаджет із полями практичної №4
+POST {{baseUrl}}/gadgets
 Content-Type: application/json
 
 {
-  "title": "Черевики Trail 2",
-  "category": "Взуття",
-  "price": 1499.50
+  "title": "Новий Смартфон",
+  "price": 30000,
+  "warrantyMonths": 12,
+  "cpu": "Snapdragon 8 Gen 3",
+  "ramGb": 12
 }
 
-### 3. Пошук і обмеження видачі.
-GET {{baseUrl}}/clothes?search=Trail&limit=1
+### Часткове оновлення
+PATCH {{baseUrl}}/gadgets/3
+Content-Type: application/json
 
-### 4. Замовлення на створений товар (після чистого запуску його id = clothing-3).
+{
+  "title": "Смартфон Pro",
+  "price": 42000
+}
+
+### Замовлення нового гаджета
 POST {{baseUrl}}/orders
 Content-Type: application/json
 
 {
-  "productId": "clothing-3",
+  "productId": "3",
   "quantity": 2,
   "customerEmail": "student@example.com"
 }
 
-### 5. Відсутній товар: очікується 404.
+### Невідомий гаджет у замовленні: 404
 POST {{baseUrl}}/orders
 Content-Type: application/json
 
 {
-  "productId": "missing",
+  "productId": "99999",
   "quantity": 1,
   "customerEmail": "student@example.com"
 }
 
-### 6. Усі оформлені замовлення.
+### Список замовлень
 GET {{baseUrl}}/orders
 
-### 7. Некоректна кількість: очікується 400.
-POST {{baseUrl}}/orders
-Content-Type: application/json
-
-{
-  "productId": "clothing-1",
-  "quantity": 0,
-  "customerEmail": "student@example.com"
-}
+### Видалення гаджета: 204
+DELETE {{baseUrl}}/gadgets/3

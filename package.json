@@ -2,7 +2,7 @@
   "name": "lab5-web-nestjs",
   "version": "1.0.0",
   "private": true,
-  "description": "Практична робота №5: модулі та ін'єкція залежностей у NestJS (варіант 3)",
+  "description": "Практична робота №5: розвиток API гаджетів із практичної №4",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/main.js",

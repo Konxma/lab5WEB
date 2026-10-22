@@ -3,10 +3,10 @@ npm notice run npm run build && node --test test/*.test.js
 npm notice run lab5-web-nestjs@1.0.0 build
 npm notice run tsc -p tsconfig.build.json
 TAP version 13
-# Subtest: повний сценарій каталогу, замовлень і request scope
-ok 1 - повний сценарій каталогу, замовлень і request scope
+# Subtest: API гаджетів із практичної №4 та модулі практичної №5
+ok 1 - API гаджетів із практичної №4 та модулі практичної №5
   ---
-  duration_ms: 471.7987
+  duration_ms: 514.6818
   type: 'test'
   ...
 1..1
@@ -17,4 +17,4 @@ ok 1 - повний сценарій каталогу, замовлень і req
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1902.623
+# duration_ms 1952.6889

@@ -9,7 +9,7 @@ export interface StoreConfig {
 export const appConfigProvider = {
   provide: STORE_CONFIG,
   useValue: {
-    storeName: 'Clothes Store',
+    storeName: 'Gadgets Store',
     defaultCurrency: 'UAH',
     taxPercent: 20,
   } satisfies StoreConfig,
